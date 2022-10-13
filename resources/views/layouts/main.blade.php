@@ -13,9 +13,7 @@
     <script src="{{ asset ('assets/js/modernizr-3.6.0.min.js') }}"></script>
     {{-- sweet alert --}}
     <link href="{{ asset ('assets/plugins/sweetalert/css/sweetalert.css') }}" rel="stylesheet">
-    <script src="{{asset('js/custom+mini-nav.js')}}"></script>
-    <script src="{{asset('assets/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/sweetalert/js/sweetalert.init.js')}}"></script>
+    {{-- <script src="{{asset('js/custom+mini-nav.js')}}"></script> --}}
 
     @yield('optionalplugins')
 </head>

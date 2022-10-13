@@ -45,12 +45,12 @@
                                 <td>{{$keglvl1->nama_lvl1}}</td>
                                 <td>
                                     <span>
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil colored m-r-5 bg-success"></i> </a>
-                                        <a href="/keglvl1/destroy/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <div class="sweetalert m-t-30">
+                                        <a href="/keglvl1/edit/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil colored m-r-5 bg-success"></i> </a>
+                                        <a href="/keglvl1/destroy/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i> </a>  
+                                        {{-- <div class="sweetalert m-t-30">
                                             <button class="btn btn-warning btn sweet-confirm" id="sweet-confirm">Delete</button>
-                                        </div>
-                                    </a></span>
+                                        </div> --}}
+                                    </span>
                                 </td>          
                             </tr>
                         @endforeach
@@ -63,6 +63,7 @@
                             </tr>
                         </tfoot>
                     </table>
+                    
                 </div>
             </div>
         </div>

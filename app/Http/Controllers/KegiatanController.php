@@ -56,9 +56,23 @@ class KegiatanController extends Controller
         return redirect('/keglvl1')->with('success', 'Berhasil Menghapus Data');
     }
 
-    public function showLevel1()
+    public function editLevel1($id)
     {
-        //
+        $lvl1 = DB::table('lvl1')->where('id_lvl1',$id)->first();
+        return view('master.edit',[
+            'lvl1'=> $lvl1
+        ]);
+    }
+
+    public function updateLevel1(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'nama_lvl1' => 'required|unique:lvl1'
+        ]);
+        DB::table('lvl1')->insert([
+            'nama_lvl1' => $validated['nama_lvl1']
+        ]);
+        return redirect('/keglvl1')->with('success', 'Berhasil Update Data');
     }
 
     public function store(StoreKegiatanRequest $request)
