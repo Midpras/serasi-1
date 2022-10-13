@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,9 @@ class HomeController extends Controller
     }
 
     public function level1(){
-        return view('master.level1');
+        $lvl1 = DB::table('lvl1')->get();
+        return view('master.level1', [
+            'lvl1' => $lvl1
+        ]);
     }
 }

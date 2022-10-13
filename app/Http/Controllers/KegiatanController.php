@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateKegiatanRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Session;
 
 class KegiatanController extends Controller
 {
@@ -47,12 +48,17 @@ class KegiatanController extends Controller
         DB::table('lvl1')->insert([
             'nama_lvl1' => $validated['nama_lvl1']
         ]);
-        return redirect('/');
+        return redirect('/keglvl1');
+    }
+
+    public function destroyLevel1($id){
+        DB::table('lvl1')->where('id_lvl1',$id)->delete();
+        return redirect('/keglvl1')->with('success', 'Berhasil Menghapus Data');
     }
 
     public function showLevel1()
     {
-        
+        //
     }
 
     public function store(StoreKegiatanRequest $request)
