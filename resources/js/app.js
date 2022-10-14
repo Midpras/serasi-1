@@ -27,6 +27,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ import Alpine from 'alpinejs'
+ window.Alpine = Alpine
+ Alpine.start()
+
 const app = new Vue({
     el: '#app',
 });

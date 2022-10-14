@@ -11,6 +11,7 @@
     <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset ('assets/css/icons.min.css') }}" rel="stylesheet">
     <script src="{{ asset ('assets/js/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- sweet alert --}}
     <link href="{{ asset ('assets/plugins/sweetalert/css/sweetalert.css') }}" rel="stylesheet">
     {{-- <script src="{{asset('js/custom+mini-nav.js')}}"></script> --}}
@@ -108,7 +109,7 @@
                             </li>
                             <li><a href="/keglvl3">Level 3</a>
                             </li>
-                            <li><a href="/keglvl4">Level 4</a>
+                            <li><a href="{{route('kegiatan.index')}}">Level 4</a>
                             </li>
                         </ul>
                     </li>
