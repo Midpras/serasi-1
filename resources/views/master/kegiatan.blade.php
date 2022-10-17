@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h4 class="card-title">Entri Kegiatan Level 4</h4>
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('kegiatan.store') }}" method="POST">
+                    <form class="form-valide" action="{{ route('kegiatan.update') }}" method="POST">
                         <div class="form-group">
                             @csrf
                             <div class="form-row">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama Kegiatan</label>
-                                <input type="text" class="form-control" placeholder="Nama Kegiatan Lvl 4">
+                                <input type="text" class="form-control" placeholder="Nama Kegiatan" name="nama_kegiatan" id="nama_kegiatan" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-dark">Submit</button>
@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12">
+     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Daftar Kegiatan</h4>
@@ -68,11 +68,14 @@
                             @foreach($kegiatan as $keg)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{$lvl1->}}</td>
+                                <td>{{$keg->lvl1->nama_lvl1}}</td>
+                                <td>{{$keg->lvl2->nama_lvl2}}</td>
+                                <td>{{$keg->lvl3->nama_lvl3}}</td>
+                                <td>{{$keg->nama_kegiatan}}</td>
                                 <td>
                                     <span>
-                                        <a href="/keglvl1/edit/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil colored m-r-5 bg-success"></i> </a>
-                                        <a href="/keglvl1/destroy/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i> </a>  
+                                        <a href="/keglvl1/edit/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
+                                        <a href="{{route('destroykegiatan', $keg->id_kegiatan)}}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i> </a>  
                                         {{-- <div class="sweetalert m-t-30">
                                             <button class="btn btn-warning btn sweet-confirm" id="sweet-confirm">Delete</button>
                                         </div> --}}
@@ -95,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 <!-- row -->
 @endsection
@@ -115,6 +118,6 @@
 
 <script>
 	$(document).ready(function() {
-		$('#lvl1').DataTable();
+		$('#kegiatan').DataTable();
 	});
 </script>

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
+use App\Models\Level1;
+use App\Models\Level2;
+use App\Models\Level3;
+
 use App\Http\Requests\StoreKegiatanRequest;
 use App\Http\Requests\UpdateKegiatanRequest;
 // use Illuminate\Http\Client\Request;
@@ -21,9 +25,9 @@ class KegiatanController extends Controller
     public function index()
     {
         $kegiatan = Kegiatan::all();
-        $lvl1 = DB::table('lvl1')->get();
-        $lvl2 = DB::table('lvl2')->get();
-        $lvl3 = DB::table('lvl3')->get();
+        $lvl1 = Level1::all();
+        $lvl2 = Level2::all();
+        $lvl3 = Level3::all();
         return view('master.kegiatan', [
             'kegiatan' => $kegiatan,
             'lvl1' => $lvl1,
@@ -31,6 +35,22 @@ class KegiatanController extends Controller
             'lvl3' => $lvl3
         ]);
     }
+
+    // public function storekegiatan(Request $request)
+    // {
+    //     dd($request->all());
+    //     // $kegiatan = Kegiatan::create($request->validated());
+    //     // dd($request->validated());
+    //     // $validated = $request->validated();
+    //     // Kegiatan::create(
+    //     //     [
+    //     //         'id_lvl1' => $validated['id_lvl1'],
+    //     //         'id_lvl2' => $validated['id_lvl2'],
+    //     //         'id_lvl3' => $validated['id_lvl3'],
+    //     //         'nama_kegiatan' => $validated['nama_kegiatan']
+    //     //     ]);
+    //         // return redirect('kegiatan.index');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -48,18 +68,7 @@ class KegiatanController extends Controller
                 'id_lvl3' => $validated['id_lvl3'],
                 'nama_kegiatan' => $validated['nama_kegiatan']
             ]);
-            return redirect('kegiatan.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Kegiatan  $kegiatan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Kegiatan $kegiatan)
-    {
-        //
+            return redirect()->route('kegiatan.index');
     }
 
     /**
@@ -68,9 +77,17 @@ class KegiatanController extends Controller
      * @param  \App\Models\Kegiatan  $kegiatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kegiatan $kegiatan)
+    public function edit(Kegiatan $kegiatan, $id)
     {
-        //
+        $kegiatan = Kegiatan::find($id);
+        $lvl1 = Level1::all();
+        $lvl2 = Level2::all();
+        $lvl3 = Level3::all();
+        return view('master.editkegiatan', [
+            'kegiatan' => $kegiatan,
+            'lvl1' => $lvl1,
+            
+        ]);
     }
 
     /**
@@ -82,7 +99,7 @@ class KegiatanController extends Controller
      */
     public function update(UpdateKegiatanRequest $request, Kegiatan $kegiatan)
     {
-        //
+        
     }
 
     /**
@@ -91,9 +108,12 @@ class KegiatanController extends Controller
      * @param  \App\Models\Kegiatan  $kegiatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kegiatan $kegiatan)
+    public function destroykegiatan(Kegiatan $kegiatan, $id)
     {
-        //
+        $kegiatan = Kegiatan::find($id);
+        $kegiatan->delete();
+
+        return redirect()->route('kegiatan.index');
     }
     //  Level 1
     public function inputLevel1(Request $request)

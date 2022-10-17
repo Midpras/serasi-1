@@ -47,3 +47,4 @@ Route::put('/keglvl3/update/{id}', [App\Http\Controllers\KegiatanController::cla
 
 Route::resources(['pk'=>'App\Http\Controllers\PkController']);
 Route::resource('kegiatan',KegiatanController::class);
+Route::get('/kegiatan/destroy/{id}', [App\Http\Controllers\KegiatanController::class, 'destroykegiatan'])->name('destroykegiatan');

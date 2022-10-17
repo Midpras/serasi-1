@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.ico') }}">
     <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset ('assets/css/icons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset ('assets/icons/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <script src="{{ asset ('assets/js/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- sweet alert --}}

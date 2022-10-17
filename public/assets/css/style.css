@@ -121,10 +121,10 @@ Table of Contents
 @import url(../icons/themify-icons/themify-icons.css);
 @import url(../icons/flag-icon-css/flag-icon.min.css);
 @import url(../icons/material-design-iconic-font/materialdesignicons.min.css);
-@import "../../assets/plugins/bootstrap/css/bootstrap.min.css";
+@import url(../../assets/plugins/bootstrap/css/bootstrap.min.css);
 @import "../../assets/plugins/shortcode/shortcode.css";
 @import "../../assets/plugins/animate/animate.css";
-@import "../../assets/plugins/metismenu/css/metisMenu.min.css";
+@import url(../../assets/plugins/metismenu/css/metisMenu.min.css);
 * {
   outline: none;
 }

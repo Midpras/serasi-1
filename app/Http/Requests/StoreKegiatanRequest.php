@@ -13,7 +13,7 @@ class StoreKegiatanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,10 @@ class StoreKegiatanRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_kegiatan' => 'required|unique',
-            'id_lvl1' => 'required|unique',
-            'id_lvl2' => 'required|unique',
-            'id_lvl3' => 'required|unique',
+            'nama_kegiatan' => 'required|unique:kegiatan',
+            'id_lvl1' => 'required',
+            'id_lvl2' => 'required',
+            'id_lvl3' => 'required',
         ];
     }
 
