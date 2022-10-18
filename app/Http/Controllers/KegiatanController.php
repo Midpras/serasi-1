@@ -77,7 +77,7 @@ class KegiatanController extends Controller
      * @param  \App\Models\Kegiatan  $kegiatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kegiatan $kegiatan, $id)
+    public function edit($id)
     {
         $kegiatan = Kegiatan::find($id);
         $lvl1 = Level1::all();
@@ -86,7 +86,8 @@ class KegiatanController extends Controller
         return view('master.editkegiatan', [
             'kegiatan' => $kegiatan,
             'lvl1' => $lvl1,
-            
+            'lvl2' => $lvl2,
+            'lvl3' => $lvl3,
         ]);
     }
 
@@ -97,9 +98,14 @@ class KegiatanController extends Controller
      * @param  \App\Models\Kegiatan  $kegiatan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKegiatanRequest $request, Kegiatan $kegiatan)
+    public function update(UpdateKegiatanRequest $request, $id)
     {
-        
+        $validated = $request->validated();
+        $kegiatan = Kegiatan::find($id);
+
+        $kegiatan->update($validated);
+
+        return redirect()->route('kegiatan.index');
     }
 
     /**

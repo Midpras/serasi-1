@@ -13,7 +13,7 @@ class UpdateKegiatanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class UpdateKegiatanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_kegiatan' => 'required|unique:kegiatan',
+            'id_lvl1' => 'required',
+            'id_lvl2' => 'required',
+            'id_lvl3' => 'required',
+        ];
+    }
+    
+    public function messages()
+    {
+        return 
+        [
+            'nama_kegiatan.required' => 'Masukkan nama kegiatan',
+            'nama_kegiatan.unique' => 'Masukkan nama kegiatan yang unik'
         ];
     }
 }

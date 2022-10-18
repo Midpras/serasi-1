@@ -35,7 +35,8 @@ class StoreKegiatanRequest extends FormRequest
     {
         return 
         [
-            'nama_kegiatan.required'
+            'nama_kegiatan.required' => 'Masukkan nama kegiatan',
+            'nama_kegiatan.unique' => 'Masukkan nama kegiatan yang unik'
         ];
     }
 }

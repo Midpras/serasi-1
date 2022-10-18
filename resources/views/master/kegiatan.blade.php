@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h4 class="card-title">Entri Kegiatan Level 4</h4>
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('kegiatan.update') }}" method="POST">
+                    <form class="form-valide" action="{{ route('kegiatan.store') }}" method="POST">
                         <div class="form-group">
                             @csrf
                             <div class="form-row">
@@ -74,7 +74,7 @@
                                 <td>{{$keg->nama_kegiatan}}</td>
                                 <td>
                                     <span>
-                                        <a href="/keglvl1/edit/{{$keglvl1->id_lvl1}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
+                                        <a href="{{route('kegiatan.edit', $keg->id_kegiatan)}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
                                         <a href="{{route('destroykegiatan', $keg->id_kegiatan)}}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i> </a>  
                                         {{-- <div class="sweetalert m-t-30">
                                             <button class="btn btn-warning btn sweet-confirm" id="sweet-confirm">Delete</button>
