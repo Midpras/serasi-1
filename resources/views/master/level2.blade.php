@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h4 class="card-title">Entri Kegiatan Level 2</h4>
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('inputkeglvl2') }}" method="POST">
+                    <form class="form-valide" action="{{ route('level2.store') }}" method="POST">
                         <div class="form-group">
                             @csrf
                             <label>Nama Kegiatan Level 2</label>
@@ -44,12 +44,18 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{$keglvl2->nama_lvl2}}</td>
                                 <td>
-                                    <span>
-                                        <a href="/keglvl2/edit/{{$keglvl2->id_lvl2}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil colored m-r-5 bg-success"></i> </a>
-                                        <a href="/keglvl2/destroy/{{$keglvl2->id_lvl2}}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i> </a>  
-                                        {{-- <div class="sweetalert m-t-30">
-                                            <button class="btn btn-warning btn sweet-confirm" id="sweet-confirm">Delete</button>
-                                        </div> --}}
+                                    <span class="d-inline-flex">
+                                        <a href={{route('level2.edit', $keglvl2->id_lvl2)}} data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted  m-r-5"></i> </a>
+                                        <a href=# data-toggle="tooltip" data-placement="top" title="Delete" class="sweet-confirm" data-nama = "{{$keglvl2->nama_lvl2}}" data-id = "{{$keglvl2->id_lvl2}}">
+                                            <i class="fa fa-close color-danger"></i> 
+                                        </a>  
+                                        {{-- <form action={{route('level2.destroy', $keglvl2->id_lvl2)}} method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="sweet-confirm" style="border : none;">
+                                                    <i class="fa fa-close color-danger sweet-confirm"></i> 
+                                                </button>
+                                        </form> --}}
                                     </span>
                                 </td>          
                             </tr>
@@ -82,7 +88,33 @@
 <script src="{{ asset('assets/plugins/validation/jquery.validate-init.js') }}"></script>
 {{-- Sweetalert --}}
 <!-- Custom script -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script>
+    $('.sweet-confirm').click(function(){
+        var data = $(this).attr('data-id');
+        var nama = $(this).attr('data-nama');
+        Swal.fire({
+        title: 'Menghapus data',
+        text: "Apakah ingin menghapus data "+nama+"?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+            setTimeout(function() {
+            window.location = "/level2/destroy/"+data+"";
+            }, 2000);   
+        }
+        })
+    })
+</script>
 @endsection
 
 <script>

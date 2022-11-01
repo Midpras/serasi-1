@@ -1,12 +1,12 @@
 document.querySelector(".sweet-wrong").onclick = function() {
-  sweetAlert("Oops...", "Something went wrong !!", "error")
+  swal("Oops...", "Something went wrong !!", "error")
 }, document.querySelector(".sweet-message").onclick = function() {
   swal("Hey, Here's a message !!")
 }, document.querySelector(".sweet-text").onclick = function() {
   swal("Hey, Here's a message !!", "It's pretty, isn't it?")
 }, document.querySelector(".sweet-success").onclick = function() {
   swal("Hey, Good job !!", "You clicked the button !!", "success")
-}, document.querySelector(".sweet-confirm").onclick = function() {
+}, document.getElementById("sweet-confirm").onclick = function() {
   swal({
     title: "Are you sure to delete ?",
     text: "You will not be able to recover this imaginary file !!",

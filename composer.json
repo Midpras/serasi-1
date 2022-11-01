@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "phpoffice/phpspreadsheet": "^1.25",
+        "realrashid/sweet-alert": "^5.1",
         "twbs/bootstrap": "5.2.2"
     },
     "require-dev": {

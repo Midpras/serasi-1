@@ -11,7 +11,12 @@ class Level2 extends Model
     protected $table = 'lvl2';
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'nama_lvl2'
+    ];
     protected $primaryKey = 'id_lvl2';
+    
 
     public function kegiatan()
     {

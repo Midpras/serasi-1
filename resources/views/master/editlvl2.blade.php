@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h4 class="card-title">Edit Kegiatan</h4>
                 <div class="form-validation">
-                    <form class="form-valide" action="{{ route('updatekeglvl2',$lvl2->id_lvl2) }}" method="POST">
+                    <form class="form-valide" action="{{ route('level2.update',$lvl2->id_lvl2) }}" method="POST">
                         <div class="form-group">
                             @method('put')
                             @csrf

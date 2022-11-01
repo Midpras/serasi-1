@@ -13,10 +13,10 @@
     <link href="{{ asset ('assets/icons/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <script src="{{ asset ('assets/js/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
-    {{-- sweet alert --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    {{-- sweet alert --}}   
     <link href="{{ asset ('assets/plugins/sweetalert/css/sweetalert.css') }}" rel="stylesheet">
-    {{-- <script src="{{asset('js/custom+mini-nav.js')}}"></script> --}}
-
     @yield('optionalplugins')
 </head>
 
@@ -104,11 +104,11 @@
                     <li class="nav-label">MASTER</li>
                     <li><a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-run-fast"></i> <span class="nav-text">Kegiatan</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="/keglvl1">Level 1</a>
+                            <li><a href={{route('level1.index')}}>Level 1</a>
                             </li>
-                            <li><a href="/keglvl2">Level 2</a>
+                            <li><a href={{route('level2.index')}}>Level 2</a>
                             </li>
-                            <li><a href="/keglvl3">Level 3</a>
+                            <li><a href={{route('level3.index')}}>Level 3</a>
                             </li>
                             <li><a href="{{route('kegiatan.index')}}">Level 4</a>
                             </li>
@@ -141,7 +141,9 @@
     <script src="{{ asset('assets/plugins/common/common.min.js') }}"></script>
     <!-- Custom script -->
     <script src="{{ asset('assets/js/custom.min.js ') }}"></script>
-    @yield('optionaljs')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
+@yield('optionaljs')
 
 </html>

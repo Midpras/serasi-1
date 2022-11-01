@@ -14,6 +14,10 @@ class Level1 extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_lvl1';
 
+    protected $fillable = [
+        'nama_lvl1'
+    ];
+
     public function kegiatan()
     {
         return $this->hasMany(Kegiatan::class);
