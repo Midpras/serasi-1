@@ -52,8 +52,10 @@ Route::resources(['pk'=>'App\Http\Controllers\PkController']);
 Route::resources([  'kegiatan'=>KegiatanController::class,
                     'level1'=>Level1Controller::class,
                     'level2'=>Level2Controller::class,
-                    'level3'=>Level3Controller::class]);
+                    'level3'=>Level3Controller::class,
+                    'tim'=>TimController::class]);
 Route::get('/level3/destroy/{id}', [App\Http\Controllers\Level3Controller::class, 'destroy'])->name('destroylevel3');
 Route::get('/level2/destroy/{id}', [App\Http\Controllers\Level2Controller::class, 'destroy'])->name('destroylevel2');
 Route::get('/level1/destroy/{id}', [App\Http\Controllers\Level1Controller::class, 'destroy'])->name('destroylevel1');
+Route::get('/kegiatan/destroy/{id}', [App\Http\Controllers\KegiatanController::class, 'destroy'])->name('destroykegiatan');
 

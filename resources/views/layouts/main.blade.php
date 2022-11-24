@@ -114,7 +114,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="/tim"><i class=" mdi mdi-account-group-outline"></i> <span class="nav-text">Tim Kerja</span></a>
+                    <li><a href={{route('tim.index')}}><i class=" mdi mdi-account-group-outline"></i> <span class="nav-text">Tim Kerja</span></a>
                     </li>
                     <li><a href="/pengguna"><i class=" mdi mdi-account-multiple-plus-outline"></i> <span class="nav-text">Pengguna</span></a>
                     </li>

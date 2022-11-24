@@ -114,118 +114,11 @@ class KegiatanController extends Controller
      * @param  \App\Models\Kegiatan  $kegiatan
      * @return \Illuminate\Http\Response
      */
-    public function destroykegiatan(Kegiatan $kegiatan, $id)
+    public function destroy(Kegiatan $kegiatan, $id)
     {
         $kegiatan = Kegiatan::find($id);
         $kegiatan->delete();
 
         return redirect()->route('kegiatan.index');
-    }
-    //  Level 1
-    public function inputLevel1(Request $request)
-    {   
-        $validated = $request->validate([
-            'nama_lvl1' => 'required|unique:lvl1'
-        ]);
-        DB::table('lvl1')->insert([
-            'nama_lvl1' => $validated['nama_lvl1']
-        ]);
-        return redirect('/keglvl1');
-    }
-
-    public function destroyLevel1($id){
-        DB::table('lvl1')->where('id_lvl1',$id)->delete();
-        return redirect('/keglvl1')->with('success', 'Berhasil Menghapus Data');
-    }
-
-    public function editLevel1($id)
-    {
-        $lvl1 = DB::table('lvl1')->where('id_lvl1',$id)->first();
-        return view('master.editlvl1',[
-            'lvl1'=> $lvl1
-        ]);
-    }
-
-    public function updateLevel1(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'nama_lvl1' => 'required|unique:lvl1'
-        ]);
-        DB::table('lvl1')
-        ->where('id_lvl1',$id)
-        ->update(['nama_lvl1' => $validated['nama_lvl1']]);
-        return redirect('/keglvl1')->with('success', 'Berhasil Update Data');
-    }
-
-    // Level 2
-    public function inputLevel2(Request $request)
-    {   
-        $validated = $request->validate([
-            'nama_lvl2' => 'required|unique:lvl2'
-        ]);
-        DB::table('lvl2')->insert([
-            'nama_lvl2' => $validated['nama_lvl2']
-        ]);
-        return redirect('/keglvl2');
-    }
-
-    public function destroyLevel2($id){
-        DB::table('lvl2')->where('id_lvl2',$id)->delete();
-        return redirect('/keglvl2')->with('success', 'Berhasil Menghapus Data');
-    }
-
-    public function editLevel2($id)
-    {
-        $lvl2 = DB::table('lvl2')->where('id_lvl2',$id)->first();
-        return view('master.editlvl2',[
-            'lvl2'=> $lvl2
-        ]);
-    }
-
-    public function updateLevel2(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'nama_lvl2' => 'required|unique:lvl2'
-        ]);
-        DB::table('lvl2')
-        ->where('id_lvl2',$id)
-        ->update(['nama_lvl2' => $validated['nama_lvl2']]);
-        return redirect('/keglvl2')->with('success', 'Berhasil Update Data');
-    }
-
-    // Level 3
-    public function inputLevel3(Request $request)
-    {   
-        $validated = $request->validate([
-            'nama_lvl3' => 'required|unique:lvl3'
-        ]);
-        DB::table('lvl3')->insert([
-            'nama_lvl3' => $validated['nama_lvl3']
-        ]);
-        return redirect('/keglvl3');
-    }
-
-    public function destroyLevel3($id){
-        DB::table('lvl3')->where('id_lvl3',$id)->delete();
-        return redirect('/keglvl3')->with('success', 'Berhasil Menghapus Data');
-    }
-
-    public function editLevel3($id)
-    {
-        $lvl3 = DB::table('lvl3')->where('id_lvl3',$id)->first();
-        return view('master.editlvl3',[
-            'lvl3'=> $lvl3
-        ]);
-    }
-
-    public function updateLevel3(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'nama_lvl3' => 'required|unique:lvl3'
-        ]);
-        DB::table('lvl3')
-        ->where('id_lvl3',$id)
-        ->update(['nama_lvl3' => $validated['nama_lvl3']]);
-        return redirect('/keglvl3')->with('success', 'Berhasil Update Data');
     }
 }
