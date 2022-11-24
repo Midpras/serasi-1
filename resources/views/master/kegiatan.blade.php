@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
      <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
@@ -75,10 +75,9 @@
                                 <td>
                                     <span>
                                         <a href="{{route('kegiatan.edit', $keg->id_kegiatan)}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
-                                        <a href="{{route('destroykegiatan', $keg->id_kegiatan)}}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i> </a>  
-                                        {{-- <div class="sweetalert m-t-30">
-                                            <button class="btn btn-warning btn sweet-confirm" id="sweet-confirm">Delete</button>
-                                        </div> --}}
+                                        <a href=# data-toggle="tooltip" data-placement="top" title="Delete" class="sweet-confirm" data-nama = "{{$keg->nama_kegiatan}}" data-id = "{{$keg->id_kegiatan}}">
+                                            <i class="fa fa-close color-danger"></i> 
+                                        </a>
                                     </span>
                                 </td>          
                             </tr>
@@ -101,6 +100,33 @@
     </div> 
 </div>
 <!-- row -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script>
+    $('.sweet-confirm').click(function(){
+        var data = $(this).attr('data-id');
+        var nama = $(this).attr('data-nama');
+        Swal.fire({
+        title: 'Menghapus data',
+        text: "Apakah ingin menghapus data "+nama+"?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Hapus saja!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+            setTimeout(function() {
+            window.location = "/kegiatan/destroy/"+data+"";
+            }, 2000);   
+        }
+        })
+    })
+</script>
 @endsection
 
 @section('optionaljs')
