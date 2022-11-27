@@ -82,7 +82,7 @@ class Level1Controller extends Controller
             'nama_lvl1' => 'required|unique:lvl1'
         ]);
         $level1 = Level1::find($id);
-        $level1->update($validated['nama_lvl1']);
+        $level1->update($validated);
         return redirect()->route('level1.index')->with('success', 'Berhasil Update Data');
     }
 

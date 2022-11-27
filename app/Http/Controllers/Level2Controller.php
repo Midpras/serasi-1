@@ -76,7 +76,7 @@ class Level2Controller extends Controller
             'nama_lvl2' => 'required|unique:lvl2'
         ]);
         $level2 = Level2::find($id);
-        $level2->update($validated['nama_lvl2']);
+        $level2->update($validated);
         return redirect()->route('level2.index')->with('success', 'Berhasil Update Data');
     }
 

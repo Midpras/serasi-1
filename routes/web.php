@@ -4,6 +4,8 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\Level1Controller;
 use App\Http\Controllers\Level2Controller;
 use App\Http\Controllers\Level3Controller;
+use App\Http\Controllers\TimController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,4 +60,6 @@ Route::get('/level3/destroy/{id}', [App\Http\Controllers\Level3Controller::class
 Route::get('/level2/destroy/{id}', [App\Http\Controllers\Level2Controller::class, 'destroy'])->name('destroylevel2');
 Route::get('/level1/destroy/{id}', [App\Http\Controllers\Level1Controller::class, 'destroy'])->name('destroylevel1');
 Route::get('/kegiatan/destroy/{id}', [App\Http\Controllers\KegiatanController::class, 'destroy'])->name('destroykegiatan');
+Route::get('/tim/destroy/{id}', [App\Http\Controllers\TimController::class, 'destroy'])->name('destroytim');
+
 

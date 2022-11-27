@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tim;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class TimController extends Controller
 {
@@ -15,8 +17,10 @@ class TimController extends Controller
     public function index()
     {
         $tim = Tim::all();
+        $satker = DB::table('satuan_kerja')->get();
         return view('master.tim', [
             'tim' => $tim,
+            'satker' => $satker,
         ]);
     }
 
@@ -38,7 +42,21 @@ class TimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_tim' => 'required|unique:tim',
+            'kode_satker' => 'required'
+        ]);
+        // DB::table('lvl1')->insert([
+        //     'nama_lvl1' => $validated['nama_lvl1']
+        // ]);
+        Tim::create(
+            [
+            'nama_tim' => $validated['nama_tim'],
+            'kode_satker' => $validated['kode_satker']
+            ]
+        );     
+        
+        return redirect()->route('master.tim');
     }
 
     /**
@@ -58,9 +76,14 @@ class TimController extends Controller
      * @param  \App\Models\Tim  $tim
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tim $tim)
+    public function edit($id)
     {
-        //
+        $tim = Tim::find($id);
+        $satker = DB::table('satuan_kerja')->get();
+        return view('master.edittim',[
+            'tim'=> $tim,
+            'satker'=>$satker
+        ]);
     }
 
     /**
@@ -70,9 +93,15 @@ class TimController extends Controller
      * @param  \App\Models\Tim  $tim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tim $tim)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nama_tim' => 'required|unique:tim',
+            'kode_satker' => 'required'
+        ]);
+        $tim = Tim::find($id);
+        $tim->update($validated);
+        return redirect()->route('tim.index')->with('success', 'Berhasil Update Data');
     }
 
     /**
@@ -81,8 +110,12 @@ class TimController extends Controller
      * @param  \App\Models\Tim  $tim
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tim $tim)
+    public function destroy($id)
     {
-        //
+        $tim = Tim::find($id);
+        $tim->delete();
+
+        return redirect()->route('tim.index');
+
     }
 }

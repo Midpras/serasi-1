@@ -77,7 +77,7 @@ class Level3Controller extends Controller
             'nama_lvl3' => 'required|unique:lvl3'
         ]);
         $level3 = Level3::find($id);
-        $level3->update($validated['nama_lvl3']);
+        $level3->update($validated);
         return redirect()->route('level3.index')->with('success', 'Berhasil Update Data');
     }
 
