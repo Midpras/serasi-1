@@ -12,8 +12,8 @@
                         <div class="form-group">
                             @csrf
                             <label>Nama Kegiatan Level 1</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan" name="nama_lvl1" id="nama_lvl1" required>
-                            @error('nama_lvl1')
+                            <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan" name="nama_lvl1" id="nama_lvl1">
+                            @error('nama_lvl1') 
                                 <div class="alert alert-danger">
                                     {{$message}}
                                 </div>

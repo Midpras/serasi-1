@@ -31,6 +31,11 @@ class Level3Controller extends Controller
     {   
         $validated = $request->validate([
             'nama_lvl3' => 'required|unique:lvl3'
+        ],
+        [
+            'nama_lvl3.required' => 'Harap Isikan Form Nama Level 3',
+            'nama_lvl3.unique' => 'Nama Kegiatan tersebut sudah ada',
+            'nama_lvl3.min' => 'Nama kegiatan setidaknya minimal terdiri dari 6 karakter'
         ]);
         Level3::create([
             'nama_lvl3' => $validated['nama_lvl3']
@@ -74,7 +79,12 @@ class Level3Controller extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'nama_lvl3' => 'required|unique:lvl3'
+            'nama_lvl3' => 'required|unique:lvl3|min:6'
+        ],
+        [
+            'nama_lvl3.required' => 'Harap Isikan Form Nama Level 3',
+            'nama_lvl3.unique' => 'Nama Kegiatan tersebut sudah ada',
+            'nama_lvl3.min' => 'Nama kegiatan setidaknya minimal terdiri dari 6 karakter'
         ]);
         $level3 = Level3::find($id);
         $level3->update($validated);
