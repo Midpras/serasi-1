@@ -5,7 +5,7 @@ use App\Http\Controllers\Level1Controller;
 use App\Http\Controllers\Level2Controller;
 use App\Http\Controllers\Level3Controller;
 use App\Http\Controllers\TimController;
-
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +55,8 @@ Route::resources([  'kegiatan'=>KegiatanController::class,
                     'level1'=>Level1Controller::class,
                     'level2'=>Level2Controller::class,
                     'level3'=>Level3Controller::class,
-                    'tim'=>TimController::class]);
+                    'tim'=>TimController::class,
+                    'users'=>UsersController::class]);
 Route::get('/level3/destroy/{id}', [App\Http\Controllers\Level3Controller::class, 'destroy'])->name('destroylevel3');
 Route::get('/level2/destroy/{id}', [App\Http\Controllers\Level2Controller::class, 'destroy'])->name('destroylevel2');
 Route::get('/level1/destroy/{id}', [App\Http\Controllers\Level1Controller::class, 'destroy'])->name('destroylevel1');
