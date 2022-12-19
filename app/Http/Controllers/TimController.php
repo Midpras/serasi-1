@@ -17,7 +17,7 @@ class TimController extends Controller
     public function index()
     {
         $tim = Tim::all();
-        $satker = DB::table('satuan_kerja')->get();
+        $satker = DB::connection('mysql')->table('satuan_kerja')->get();
         return view('master.tim', [
             'tim' => $tim,
             'satker' => $satker,

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tim extends Model
 {
     use HasFactory;
-
+    
+    protected $connection = 'mysql';
     protected $table = 'tim';
     protected $primaryKey = 'id_tim';
 

@@ -12,6 +12,8 @@
     <link href="{{ asset ('assets/css/icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset ('assets/icons/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <script src="{{ asset ('assets/js/modernizr-3.6.0.min.js') }}"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <link href="{{ asset('/assets/plugins/select2/select2.min.css') }}" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -142,8 +144,8 @@
     <!-- Custom script -->
     <script src="{{ asset('assets/js/custom.min.js ') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('optionaljs')
 
 </body>
-@yield('optionaljs')
 
 </html>
