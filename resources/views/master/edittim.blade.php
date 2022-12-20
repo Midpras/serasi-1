@@ -26,6 +26,16 @@
                                     </select>                                
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Nama Ketua Tim</label>
+                                    <select name="ketua_tim" id="ketua_tim" class="form-control js-example-basic-select2">
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}"> {{$user->name}}</option>
+                                        @endforeach
+                                    </select>                                
+                                </div>
+                            </div>
                             {{-- <div class="form-group">
                                 <label>Nama Kegiatan</label>
                                 <input type="text" class="form-control" placeholder="Nama Tim" name="nama_tim" id="nama_tim" value="{{$satuankerja->nama_satker}}" required>

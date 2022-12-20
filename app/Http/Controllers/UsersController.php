@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tim;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,6 @@ class UsersController extends Controller
         return view('master.users', [
             'users' => $users,
         ]);
-
     }
 
     /**
@@ -35,9 +35,13 @@ class UsersController extends Controller
         FROM pegawai
         ');
         $satker = DB::connection('mysql')->table('satuan_kerja')->get();
+        $user = User::all();
+        $tim = Tim::select('id_user')->distinct()->get();
         return view('master.tambahuser', [
             'pegawais' => $pegawai,
             'satker' => $satker,
+            'users' => $user,
+            'tims' => $tim
         ]);
     }
 
@@ -60,15 +64,17 @@ class UsersController extends Controller
             'nip' => ['required'],
             'email' => ['required'],
             'role' => ['required'],
-            'satker' => ['required']
+            'satker' => ['required'],
+            'ttd' => ['required']
         ],
         [
             'name.required' => 'Harap Isikan user',
             'name.unique' => 'Nama users tersebut sudah ada',
-            'nip.required' => 'harus isi NIP',
-            'email.required' => 'harap isikan Email',
+            'nip.required' => 'Harus isi NIP',
+            'email.required' => 'Harap isikan Email',
             'role.required' => 'Harap masukkan role user tersebut',
-            'satker.required' => 'Harap masukkan satuan kerja dari user tersebut'
+            'satker.required' => 'Harap masukkan satuan kerja dari user tersebut',
+            'ttd.required' => 'Harap pilih atasan langsung'
         ]);
         // DB::table('lvl1')->insert([
         //     'nama_lvl1' => $validated['nama_lvl1']
@@ -80,7 +86,8 @@ class UsersController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make('12345678'),
             'role' => $validated['role'],
-            'satker' => $validated['satker']
+            'satker' => $validated['satker'],
+            'id_ttd' => $validated['ttd']
             ]
         );     
         

@@ -92,6 +92,22 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Nama Atasan Langsung</label>
+                            <div class="col-sm-10">
+                                <select name="ttd" id="ttd" class="form-control js-example-basic-select2">
+                                    <option value="" selected disabled hidden>Cari Nama Pegawai</option>
+                                    @foreach($tims as $tim)
+                                        <option value="{{$tim->id_user}}"> {{$tim->user->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('nama')
+                                    <div class="error-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">Tambah User</button>
                             </div>

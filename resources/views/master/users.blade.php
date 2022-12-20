@@ -20,6 +20,7 @@
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Satker</th>
+                                <th>Atasan Langsung</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -32,6 +33,11 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->role}}</td>
                                     <td>{{$user->satker}}</td>
+                                    @if($user->parent)
+                                    <td>{{$user->parent->name}}</td>
+                                    @else
+                                    <td>Pejabat</td>
+                                    @endif
                                     <td>
                                         <span>
                                             <a href={{route('users.edit', $user->nip)}} data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
@@ -45,11 +51,13 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>NIP</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Satker</th>
+                                <th>Atasan Langsung</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
