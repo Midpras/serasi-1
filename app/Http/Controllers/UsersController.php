@@ -76,13 +76,15 @@ class UsersController extends Controller
             'satker.required' => 'Harap masukkan satuan kerja dari user tersebut',
             'ttd.required' => 'Harap pilih atasan langsung'
         ]);
+
+        $nip = str_replace(' ', '', $validated['nip']);
         // DB::table('lvl1')->insert([
         //     'nama_lvl1' => $validated['nama_lvl1']
         // ]);
         User::create(
             [
             'name' => $validated['name'],
-            'nip' => $validated['nip'],
+            'nip' => $nip,
             'email' => $validated['email'],
             'password' => Hash::make('12345678'),
             'role' => $validated['role'],

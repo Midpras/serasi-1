@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Level1Controller;
 use App\Http\Controllers\Level2Controller;
 use App\Http\Controllers\Level3Controller;
@@ -56,7 +57,8 @@ Route::resources([  'kegiatan'=>KegiatanController::class,
                     'level2'=>Level2Controller::class,
                     'level3'=>Level3Controller::class,
                     'tim'=>TimController::class,
-                    'users'=>UsersController::class]);
+                    'users'=>UsersController::class,
+                    'laporan'=>LaporanController::class]);
 Route::get('/users/create/{id}', [App\Http\Controllers\UsersController::class, 'getNIP'])->name('getNIP');
 Route::get('/level3/destroy/{id}', [App\Http\Controllers\Level3Controller::class, 'destroy'])->name('destroylevel3');
 Route::get('/level2/destroy/{id}', [App\Http\Controllers\Level2Controller::class, 'destroy'])->name('destroylevel2');

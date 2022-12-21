@@ -134,7 +134,7 @@
         dataType: 'json',
         success: function(response){
             if(response != null){
-                $('#nip').val(response.nipbaru);
+                $('#nip').val(response.nip);
                 $('#email').val(response.email);
             }
         }

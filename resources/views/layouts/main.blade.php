@@ -12,6 +12,7 @@
     <link href="{{ asset ('assets/css/icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset ('assets/icons/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <script src="{{ asset ('assets/js/modernizr-3.6.0.min.js') }}"></script>
+    <link href="{{ asset('assets/plugins/fullcalender/css/fullcalendar.css') }}" rel="stylesheet">
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
     <link href="{{ asset('/assets/plugins/select2/select2.min.css') }}" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -71,8 +72,6 @@
                     <li class="nav-label">BERANDA</li>
                     <li><a href="/"><i class=" mdi mdi-view-dashboard"></i> <span class="nav-text">Dashboard</span></a>
                     </li>
-
-
                     <li class="nav-label">PIMPINAN</li>
                     <li><a href="/pk"><i class=" mdi mdi-book-variant-multiple"></i> <span class="nav-text">Perjanjian Kinerja</span></a>
                     </li>
@@ -91,6 +90,8 @@
                             <li><a href="/penilaianckp">Penilaian CKP</a>
                             </li>
                         </ul>
+                    </li>
+                    <li><a href={{route('laporan.index')}}><i class=" mdi mdi-book-clock-outline"></i> <span class="nav-text">Laporan Harian</span></a>
                     </li>
 
                     <li class="nav-label">UNDUH</li>
@@ -144,6 +145,7 @@
     <!-- Custom script -->
     <script src="{{ asset('assets/js/custom.min.js ') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Optional JS --}}
     @yield('optionaljs')
 
 </body>

@@ -8,7 +8,8 @@
             o = t.attr("data-class"),
             i = e.extend({}, a);
         i.start = n, o && (i.className = [o]), this.$calendar.fullCalendar("renderEvent", i, !0), e("#drop-remove").is(":checked") && t.remove()
-    }, t.prototype.onEventClick = function(t, n, a) {
+    }, 
+    t.prototype.onEventClick = function(t, n, a) {
         var o = this,
             i = e("<form></form>");
         i.append("<label>Change event name</label>"), i.append("<div class='input-group'><input class='form-control' type=text value='" + t.title + "' /><span class='input-group-btn'><button type='submit' class='btn btn-success waves-effect waves-light'><i class='fa fa-check'></i> Save</button></span></div>"), o.$modal.modal({
@@ -20,7 +21,8 @@
         }), o.$modal.find("form").on("submit", function() {
             return t.title = i.find("input[type=text]").val(), o.$calendarObj.fullCalendar("updateEvent", t), o.$modal.modal("hide"), !1
         })
-    }, t.prototype.onSelect = function(t, n, a) {
+    }, 
+    t.prototype.onSelect = function(t, n, a) {
         var o = this;
         o.$modal.modal({
             backdrop: "static"
@@ -39,7 +41,8 @@
                 className: a
             }, !0), o.$modal.modal("hide")) : alert("You have to give a title to your event"), !1
         }), o.$calendarObj.fullCalendar("unselect")
-    }, t.prototype.enableDrag = function() {
+    }, 
+    t.prototype.enableDrag = function() {
         e(this.$event).each(function() {
             var t = {
                 title: e.trim(e(this).text())
@@ -50,7 +53,8 @@
                 revertDuration: 0
             })
         })
-    }, t.prototype.init = function() {
+    }, 
+    t.prototype.init = function() {
         this.enableDrag();
         var t = new Date,
             n = (t.getDate(), t.getMonth(), t.getFullYear(), new Date(e.now())),
@@ -95,7 +99,8 @@
             eventClick: function(e, t, n) {
                 o.onEventClick(e, t, n)
             }
-        }), this.$saveCategoryBtn.on("click", function() {
+        }), 
+        this.$saveCategoryBtn.on("click", function() {
             var e = o.$categoryForm.find("input[name='category-name']").val(),
                 t = o.$categoryForm.find("select[name='category-color']").val();
             null !== e && 0 != e.length && (o.$extEvents.append('<div class="external-event bg-' + t + '" data-class="bg-' + t + '" style="position: relative;"><i class="fa fa-move"></i>' + e + "</div>"), o.enableDrag())
