@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h4>{{$pegawai->name}}</h4>
+                    <h4>Calendar</h4>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12">
@@ -43,20 +43,9 @@
       var calendarEl = document.getElementById('calendarevent');
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        themeSystem: 'bootstrap5',
         dateClick: function(info) {
-            var date = info.dateStr;
-            var url = '{{route("laporan.create")}}'
-            window.location.href = url + "/" + date
-            // $.ajax({
-            //     type: 'GET',
-            //     data:{"tanggal":date},
-            //     url : '{{route("laporan.create")}}',
-            //     success :function(){
-            //         window.location.href = url + "/" + date
-            //     }
-            // })
-           
+            alert('Date: ' + info.dateStr);
+            alert('Resource ID:  ' + info.resource.id);
         }
             });
       calendar.render();

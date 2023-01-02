@@ -52,6 +52,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // Route::put('/keglvl3/update/{id}', [App\Http\Controllers\KegiatanController::class, 'updateLevel3'])->name('updatekeglvl3');
 
 Route::resources(['pk'=>'App\Http\Controllers\PkController']);
+Route::get('/laporan/create/{tanggal}', [App\Http\Controllers\LaporanController::class, 'create'])->name('createlaporan');
+Route::get('/laporan/create/kegiatan/{tanggal}/{pegawai}', [App\Http\Controllers\LaporanController::class, 'tambahkegiatan'])->name('tambahkegiatan');
 Route::resources([  'kegiatan'=>KegiatanController::class,
                     'level1'=>Level1Controller::class,
                     'level2'=>Level2Controller::class,

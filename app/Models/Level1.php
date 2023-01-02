@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Level1 extends Model
 {
     use HasFactory;
-
+    protected $connection = 'mysql';
     protected $table = 'lvl1';
 
     public $timestamps = false;
