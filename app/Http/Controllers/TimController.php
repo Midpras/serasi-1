@@ -56,7 +56,7 @@ class TimController extends Controller
             [
             'nama_tim' => $validated['nama_tim'],
             'kode_satker' => $validated['kode_satker'],
-            'id_user' => $validated['ketua_tim']
+            'id_user' => $request['ketua_tim']
             ]
         );     
         

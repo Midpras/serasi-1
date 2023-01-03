@@ -11,7 +11,7 @@
                     <form action="#" method="POST">
                         @csrf
                         <div class="table-responsive">
-                            <table id="#" name="kegiatan" class="table table-striped table-bordered zero-configuration">
+                            <table id="#" name="#" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Nomor</th>
@@ -27,25 +27,39 @@
                                 <tbody>
                                     <form action="#">
                                         <div class="form-row">
-                                            <div class="col-1">
-                                                <th>1</th>
-                                            </div>
-                                            <div class="col-4">
-                                                <th>                                
-                                                    <input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
+                                            <tr>
+                                                <th style="width: 5%">
+                                                    <div class="col-1">
+                                                        1
+                                                    </div>
                                                 </th>
-                                            </div>
-                                            <div class="col-1">
-                                                <th>                                
-                                                    <input type="text" class="form-control" name="satuan_kegiatan" id="satuan_kegiatan" required>
+                                                <th>
+                                                    <div class="col-16">
+                                                        <input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
+                                                    </div>                                
                                                 </th>
-                                            </div>
-                                            
-                                            <th>                                
-                                                <input type="text" class="form-control" name="volume" id="volume" required>
-                                            </th>
+                                                    <th style="width: 10%">
+                                                        <div class="col-12">                       
+                                                            <input type="text" class="form-control" name="satuan_kegiatan" id="satuan_kegiatan" required>
+                                                        </div>
+                                                    </th>                                            
+                                                <th style="width: 5%">                                
+                                                    <input type="text" class="form-control" name="volume" id="volume" required>
+                                                </th>
+                                                <th style="width: 10%">                                
+                                                    <input type="text" class="form-control" name="satuan_durasi" id="satuan_durasi" required>
+                                                </th>
+                                                <th style="width: 10%">                                
+                                                    <input type="text" class="form-control" name="status_kegiatan" id="status_kegiatan" required>
+                                                </th>
+                                                <th style="width: 10%">                                
+                                                    <input type="text" class="form-control" name="pemberi_tugas" id="pemberi_tugas" required>
+                                                </th>
+                                                <th style="width: 10%">                                
+                                                    <input type="text" class="form-control" name="keterangan" id="keterangan" required>
+                                                </th>
+                                            </tr>
                                         </div>
-                                        
                                     </form>
                                 </tbody>
                             </table>
