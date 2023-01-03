@@ -2,8 +2,9 @@
 
 @section('container')
 
-<div class="container-fluid">    
-    <div class="col-lg-12">
+<div class="container-fluid">
+    @livewire('laporankegiatan')
+    {{-- <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Tambah Kegiatan</h4>
@@ -73,9 +74,10 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  --}}
 </div>
 <!-- row -->
+@livewireScripts
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 <script src="{{ asset('assets/plugins/select2/select2-init.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/select2.full.min.js') }}"></script>
