@@ -22,13 +22,6 @@ class Laporankegiatan extends Component
         unset($this->inputs[$i]);
     }
 
-
-    public function render()
-    {
-        $this->laporans = Laporanan::all();
-        return view('livewire.laporankegiatan');
-    }
-
     private function resetInputFields(){
         $this->namakegiatan ='';
         $this->satuankegiatan = '';
@@ -52,13 +45,39 @@ class Laporankegiatan extends Component
             'keterangan.0' => 'required',
             'statuskegiatan.0' => 'required',
             'namakegiatan.*' => 'required',
-            'satuankegiatan.0' => 'required',
-            'volume.0' => 'required',
-            'durasi.0' => 'required',
-            'satuandurasi.0' => 'required',
-            'pemberitugas.0' => 'required',
-            'keterangan.0' => 'required',
-            'statuskegiatan.0' => 'required',
-        ]);
+            'satuankegiatan.*' => 'required',
+            'volume.*' => 'required',
+            'durasi.*' => 'required',
+            'satuandurasi.*' => 'required',
+            'pemberitugas.*' => 'required',
+            'keterangan.*' => 'required',
+            'statuskegiatan.*' => 'required',
+        ],
+        [ 
+            'namakegiatan.0.required' => 'Isikan nama kegiatan',
+            'namakegiatan.*.required' => 'Isikan nama kegiatan',
+        ]
+        );
+
+        foreach($this->namakegiatan as $key=> $value ){
+            Laporan::create([
+                'namakegiatan' => $this->namakegiatan[$key],
+                'satuankegiatan' => $this->satuankegiatan[$key],
+                'volume' => $this->volume[$key],
+                'durasi' => $this->durasi[$key],
+                'satuandurasi' => $this->satuandurasi[$key],
+                'pemberitugas' => $this->pemberitugas[$key],
+                'keterangan' => $this->keterangan[$key],
+                'statuskegiatan' => $this->statuskegiatan[$key]
+            ]);
+        }
+
+        $this->inputs = [];
+        $this->resetInputFields();
+    }
+    public function render()
+    {
+        $data = Laporan::all();
+        return view('livewire.laporankegiatan', ['data' => $data]);
     }
 }
