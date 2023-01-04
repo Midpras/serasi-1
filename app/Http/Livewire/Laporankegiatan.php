@@ -3,11 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Laporan;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Laporankegiatan extends Component
 {
     public $laporans, $namakegiatan, $satuankegiatan, $volume, $durasi, $satuandurasi, $pemberitugas, $keterangan, $statuskegiatan;
+    public $tanggal;
+    public $pegawai;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -35,6 +38,7 @@ class Laporankegiatan extends Component
 
     public function store()
     {
+        $pegawainip = Auth::id();
         $validated = $this->validate([
             'namakegiatan.0' => 'required',
             'satuankegiatan.0' => 'required',
@@ -61,6 +65,8 @@ class Laporankegiatan extends Component
 
         foreach($this->namakegiatan as $key=> $value ){
             Laporan::create([
+                'pegawai' => $this->pegawai->nip,
+                'tanggal' => $this->tanggal,
                 'namakegiatan' => $this->namakegiatan[$key],
                 'satuankegiatan' => $this->satuankegiatan[$key],
                 'volume' => $this->volume[$key],

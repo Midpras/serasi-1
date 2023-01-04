@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="container-fluid">
-    @livewire('laporankegiatan')
+    @livewire('laporankegiatan', ['tanggal' => $tanggal, 'pegawai'=> $pegawai])
     {{-- <div class="col-lg-12">
         <div class="card">
             <div class="card-body">

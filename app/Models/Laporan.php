@@ -17,6 +17,8 @@ class Laporan extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'tanggal',
+        'pegawai',
         'namakegiatan',
         'satuankegiatan',
         'volume',
@@ -27,7 +29,6 @@ class Laporan extends Model
         'statuskegiatan'
     ];
     protected $guarded = [
-        'pegawai',
         'id'
     ];
 }
