@@ -12,7 +12,7 @@
                         <div class="form-group">
                             @method('put')
                             @csrf
-                            <label>Nama Kegiatan Level 2</label>
+                            <label>Nama Sub Kegiatan</label>
                             <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan" name="nama_lvl2" id="nama_lvl2" value="{{$lvl2->nama_lvl2}}" required>
                             @error('nama_lvl2')
                                 <div class="alert alert-danger">

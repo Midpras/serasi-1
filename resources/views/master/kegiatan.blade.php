@@ -13,7 +13,7 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label>Nama Kegiatan Level 1</label>
+                                    <label>Nama Kegiatan</label>
                                     <select class="form-control" id="id_lvl1" name="id_lvl1"> 
                                         @foreach($lvl1 as $keglvl1)
                                         <option value="{{$keglvl1->id_lvl1}}"> {{$keglvl1->nama_lvl1}}</option>
@@ -21,7 +21,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Nama Kegiatan Level 2</label>
+                                    <label>Nama Sub Kegiatan</label>
                                     <select class="form-control" id="id_lvl2" name="id_lvl2"> 
                                         @foreach($lvl2 as $keglvl2)
                                         <option value="{{$keglvl2->id_lvl2}}"> {{$keglvl2->nama_lvl2}}</option>
@@ -29,7 +29,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Nama Kegiatan Level 3</label>
+                                    <label>Nama Rincian Kegiatan</label>
                                     <select class="form-control" id="id_lvl3" name="id_lvl3"> 
                                         @foreach($lvl3 as $keglvl3)
                                         <option value="{{$keglvl3->id_lvl3}}"> {{$keglvl3->nama_lvl3}}</option>
@@ -40,6 +40,13 @@
                             <div class="form-group">
                                 <label>Nama Kegiatan</label>
                                 <input type="text" class="form-control" placeholder="Nama Kegiatan" name="nama_kegiatan" id="nama_kegiatan" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipe Kegiatan</label>
+                                <select class="form-control" id="type" name="type"> 
+                                    <option value="main">Utama</option>
+                                    <option value="additional">Penunjang</option>
+                                </select>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-dark">Submit</button>
@@ -57,10 +64,11 @@
                         <thead>
                             <tr>
                                 <th>Nomor</th>
-                                <th>Level 1</th>
-                                <th>Level 2</th>
-                                <th>Level 3</th>
                                 <th>Kegiatan</th>
+                                <th>Sub Kegiatan</th>
+                                <th>Rincian Kegiatan</th>
+                                <th>Kegiatan CKP</th>
+                                <th>Tipe Kegiatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -72,6 +80,7 @@
                                 <td>{{$keg->lvl2->nama_lvl2}}</td>
                                 <td>{{$keg->lvl3->nama_lvl3}}</td>
                                 <td>{{$keg->nama_kegiatan}}</td>
+                                <td>{{$keg->type === "main" ? "Utama" : "Penunjang"}}</td>
                                 <td>
                                     <span>
                                         <a href="{{route('kegiatan.edit', $keg->id_kegiatan)}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
@@ -86,10 +95,11 @@
                         <tfoot>
                             <tr>
                                 <th>Nomor</th>
-                                <th>Level 1</th>
-                                <th>Level 2</th>
-                                <th>Level 3</th>
                                 <th>Kegiatan</th>
+                                <th>Sub Kegiatan</th>
+                                <th>Rincian Kegiatan</th>
+                                <th>Kegiatan CKP</th>
+                                <th>Tipe Kegiatan</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

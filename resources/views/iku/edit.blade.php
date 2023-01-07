@@ -34,7 +34,7 @@
                             <label class="col-sm-2 col-form-label">Renstra</label>
                             <div class="col-sm-10">
                                 <select class="form-control h-150px" name="renstra">
-                                    <option value="{{$iku->id_pk_prov}}" selected disabled>{{$iku->pk_prov->renstra}}</option>
+                                    <option value="{{$iku->id_pk_prov}}" selected disabled>{{$iku->pkprov->renstra}}</option>
                                     @foreach($pk_prov as $p)
                                     <option value="{{$p->id_pk_prov}}">{{$p->renstra}}</option>
                                     @endforeach
@@ -45,7 +45,7 @@
                             <label class="col-sm-2 col-form-label">Perjanjian Kinerja</label>
                             <div class="col-sm-10">
                                 <select class="form-control h-150px"  name="pk">
-                                    <option selected disabled>{{$iku->pk_prov->nama_pk_prov}}</option>
+                                    <option selected disabled>{{$iku->pkprov->nama_pk_prov}}</option>
                                     @foreach($pk_prov as $p)
                                     <option value="{{$p->id_pk_prov}}" >{{$p->nama_pk_prov}}</option>
                                     @endforeach

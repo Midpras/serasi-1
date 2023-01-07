@@ -15,7 +15,7 @@ class IkuProv extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function pk_prov()
+    public function pkprov()
     {
         return $this->belongsTo(Pkprov::class, 'id_pk_prov');
     }

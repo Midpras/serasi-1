@@ -67,8 +67,8 @@
                                 @foreach($iku_prov as $p)
                                 <tr>
                                    
-                                    <td>{{$p->pk_prov->renstra}}</td>
-                                    <td>{{$p->pk_prov->nama_pk_prov}}</td>
+                                    <td>{{$p->pkprov->renstra}}</td>
+                                    <td>{{$p->pkprov->nama_pkprov}}</td>
                                     <td>{{$p->nama_iku_prov}}</td>
                                     <td>{{$p->satuan_iku_prov}}</td>
                                     <td>{{$p->target_iku_prov}}</td>
@@ -80,7 +80,7 @@
                                                 @method('DELETE')
                                                 @csrf
                                             <div class="col-sm-1">
-                                                <button type="submit" class="btn btn-rounded btn-danger d-inline-block f-s-12 p-l-20 p-r-20"><span class="btn-icon-left"><i class="fa fa-close color-danger"></i></span>Delete</button>
+                                                <button type="submit" class="btn btn-rounded btn-danger d-inline-block f-s-12 p-l-20 p-r-20" onclick="return confirm('Apakah Ingin Menghapus IKU ini?');"><span class="btn-icon-left"><i class="fa fa-close color-danger"></i></span>Delete</button>
                                             </div>
                                                 
                                             </form>
@@ -106,7 +106,7 @@
                                                 @method('DELETE')
                                                 @csrf
                                             <div class="col-sm-1">
-                                                <button type="submit" class="btn btn-rounded btn-danger"><span class="btn-icon-left"><i class="fa fa-close color-danger"></i></span>Delete</button>
+                                                <button type="submit" class="btn btn-rounded btn-danger" onclick="return confirm('Apakah Ingin Menghapus IKU ini?');"><span class="btn-icon-left"><i class="fa fa-close color-danger"></i></span>Delete</button>
                                             </div>
                                                 
                                             </form>

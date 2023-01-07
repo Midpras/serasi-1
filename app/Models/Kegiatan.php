@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Ckpprov;
 
 class Kegiatan extends Model
 {
     use HasFactory;
-
-    protected $table = "kegiatan";
-    protected $primaryKey = 'id_kegiatan';
+    protected $connection = 'mysql';
+    protected $table = 'kegiatan';
 
     protected $fillable = [
         'id_lvl1',
@@ -21,25 +19,20 @@ class Kegiatan extends Model
     ];
 
     public $timestamps = false;
+    protected $primaryKey = 'id_kegiatan';
 
-
-    public function level1()
+    public function lvl1()
     {
-        return $this->belongsTo(level1::class, 'id_lvl1');
+        return $this->belongsTo(Level1::class, 'id_lvl1');
     }
 
-    public function level2()
+    public function lvl2()
     {
         return $this->belongsTo(Level2::class, 'id_lvl2');
     }
 
-    public function level3()
+    public function lvl3()
     {
         return $this->belongsTo(Level3::class, 'id_lvl3');
-    }
-
-    public function ckpprov()
-    {
-        return $this->hasMany(Ckpprov::class, 'id_kegiatan');
     }
 }

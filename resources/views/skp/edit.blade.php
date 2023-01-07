@@ -17,52 +17,41 @@
 <div class="container-fluid">
     <div class="row page-titles">
         <div class="col p-0">
-            <h4>Edit Indikator Kinerja Individu</h4>
+            <h4>Edit Sasaran Kinerja Pegawai</h4>
         </div>
         <div class="col p-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item"><a href="/">IKI</a>
+                <li class="breadcrumb-item"><a href="/">SKP</a>
                 </li>
-                <li class="breadcrumb-item active">Edit Indikator Kinerja Individu</li>
+                <li class="breadcrumb-item active">Edit Sasaran Kinerja Pegawai</li>
             </ol>
         </div>
     </div>
     <!-- row -->
+    @if($nama->satker == '5300')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Edit IKI</h4>
+                    <h4 class="card-title">Edit SKP</h4>
                     <div class="basic-form">
-                        <form autocomplete="off" action="/iki/update" method="post" enctype="multipart/form-data">
+                        <form autocomplete="off" action="/skp/update" method="post" enctype="multipart/form-data">
                             {{ @csrf_field() }}
-                            <input type="hidden" name="id_iki_prov" id="id_iki_prov" value="{{$iki->id_iki_prov}}">
+                            <input type="hidden" name="id_skp_prov" id="id_skp_prov" value="{{$skp_prov->id_skp_prov}}">
                             <div class="form-group">
-                                <label>IKU Atasan Langsung</label>
-                                <input readonly type="text" class="form-control" value="{{$iki->ikuprov->nama_iku_prov}}">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Target</label>
-                                    <input readonly type="text" class="form-control" value="{{$iki->target_iki_prov}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Satuan</label>
-                                    <input readonly type="text" class="form-control" value="{{$iki->satuan_iki_prov}}">
-                                </div>
+                                <label>Nama IKU Atasan Langsung</label>
+                                <input type="text" name="nama_skp_prov" class="form-control" value="{{$skp_prov->Ikiprov->Ikuprov->nama_iku_prov}}" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Nama IKI</label>
-                                <input type="text" name="nama_iki_prov" class="form-control" value="{{$iki->nama_iki_prov}}" autocomplete="off" required>
+                                <input type="text" name="nama_skp_prov" class="form-control" value="{{$skp_prov->Ikiprov->nama_iki_prov}}" readonly>
                             </div>
-                            <?php if($iki->nama_iki_prov == NULL){ ?>
                             <div class="form-group">
                                 <label>Nama SKP</label>
-                                <input type="text" name="nama_skp_prov" class="form-control" autocomplete="off">
+                                <input type="text" name="nama_skp_prov" class="form-control" value="{{$skp_prov->nama_skp_prov}}" autocomplete="off" required>
                             </div>
-                            <?php }else{}; ?>
                             <button type="submit" class="btn btn-dark btn sweet-success">SIMPAN</button>
                         </form>
                     </div>
@@ -70,6 +59,32 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Edit SKP</h4>
+                    <div class="basic-form">
+                        <form autocomplete="off" action="/skp/update" method="post" enctype="multipart/form-data">
+                            {{ @csrf_field() }}
+                            <input type="hidden" name="id_skp_prov" id="id_skp_prov" value="{{$skp_prov->id_skp_prov}}">
+                            <div class="form-group">
+                                <label>Nama IKU</label>
+                                <input type="text" name="nama_skp_prov" class="form-control" readonly value="{{$skp_prov->iki_prov->iku_prov->nama_iku_prov}}" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label>Nama SKP</label>
+                                <input type="text" name="nama_skp_prov" class="form-control" value="{{$skp_prov->nama_skp_prov}}" autocomplete="off" required>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn sweet-success">SIMPAN</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection
 

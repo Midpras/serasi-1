@@ -60,13 +60,25 @@ class KegiatanController extends Controller
      */
     public function store(StoreKegiatanRequest $request)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'nama_kegiatan' => 'required|unique:kegiatan|min:6',
+            'id_lvl1' => 'required',
+            'id_lvl2' => 'required',
+            'id_lvl3' => 'required',
+            'type' => 'required'
+        ],
+        [
+            'nama_kegiatan.required' => 'Harap isikan form nama rincian kegiatan',
+            'nama_kegiatan.unique' => 'Nama Kegiatan tersebut sudah ada',
+            'nama_kegiatan.min' => 'Nama kegiatan setidaknya minimal terdiri dari 6 karakter'
+        ]);
         Kegiatan::create(
             [
                 'id_lvl1' => $validated['id_lvl1'],
                 'id_lvl2' => $validated['id_lvl2'],
                 'id_lvl3' => $validated['id_lvl3'],
-                'nama_kegiatan' => $validated['nama_kegiatan']
+                'nama_kegiatan' => $validated['nama_kegiatan'],
+                'type' => $validated['type']
             ]);
             return redirect()->route('kegiatan.index');
     }

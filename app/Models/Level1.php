@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Level1 extends Model
 {
     use HasFactory;
+    protected $connection = 'mysql';
+    protected $table = 'lvl1';
 
-    protected $table = "lvl1";
+    public $timestamps = false;
     protected $primaryKey = 'id_lvl1';
+
+    protected $fillable = [
+        'nama_lvl1'
+    ];
 
     public function kegiatan()
     {
-        return $this->hasMany(kegiatan::class, 'id_lvl1');
+        return $this->hasMany(Kegiatan::class);
     }
 }

@@ -22,7 +22,7 @@ class Ikiprov extends Model
         'perhitungan_prov',
         'id_iku_prov',
         'id_user',
-        'id_skp_atasan'
+        'id_iki_atasan'
     ];
 
     public function skpprov()

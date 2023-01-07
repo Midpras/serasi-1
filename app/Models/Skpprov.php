@@ -31,4 +31,5 @@ class Skpprov extends Model
     {
         return $this->belongsTo(Ikiprov::class, 'id_iki_prov');
     }
+
 }

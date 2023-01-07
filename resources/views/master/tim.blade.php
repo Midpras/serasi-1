@@ -25,6 +25,16 @@
                                     </select>                                
                                 </div>
                             </div>
+                            <div class= "form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Nama Ketua Tim</label>
+                                    <select name="ketua_tim" id="ketua_tim" class="form-control js-example-basic-select2">
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}"> {{$user->name}}</option>
+                                        @endforeach
+                                    </select>                                
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-dark">Submit</button>
                         </div>
                     </form>
@@ -43,6 +53,7 @@
                                 <th>Nomor</th>
                                 <th>Nama Tim</th>
                                 <th>Kode Satker</th>
+                                <th>Ketua Tim</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -52,14 +63,19 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{$timkerja->nama_tim}}</td>
                                 <td>{{$timkerja->kode_satker}}</td>
+                                @if($timkerja->user)
+                                    <td>{{$timkerja->user->name}}</td>
+                                @else
+                                    <td>NULL</td>
+                                @endif
                                 <td>
                                     <span>
                                         <a href="{{route('tim.edit', $timkerja->id_tim)}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5 "></i> </a>
-                                        <a href=# data-toggle="tooltip" data-placement="top" title="Delete" class="sweet-confirm" data-nama ="{{$timkerja->nama_tim}}" data-id = "{{$timkerja->id_tim}}">
+                                        <a href="{{route('destroytim', $timkerja->id_tim)}}" data-toggle="tooltip" data-placement="top" title="Delete" class="#" data-nama ="{{$timkerja->nama_tim}}" data-id = "{{$timkerja->id_tim}}">
                                             <i class="fa fa-close color-danger"></i> 
                                         </a>
                                     </span>
-                                </td>          
+                                </td> 
                             </tr>
                         @endforeach
                         </tbody>
@@ -68,6 +84,7 @@
                                 <th>Nomor</th>
                                 <th>Nama Tim</th>
                                 <th>Kode Satker</th>
+                                <th>Ketua Tim</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -91,8 +108,10 @@
 <script src="{{ asset('assets/plugins/validation/jquery.validate-init.js') }}"></script>
 {{-- Sweetalert --}}
 <!-- Custom script -->
+<script src="{{ asset('assets/plugins/select2/select2-init.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/select2.full.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-<script>
+{{-- <script>
     $('.sweet-confirm').click(function(){
         var data = $(this).attr('data-id');
         var nama = $(this).attr('data-nama');
@@ -117,7 +136,7 @@
         }
         })
     })
-</script>
+</script> --}}
 
 @endsection
 

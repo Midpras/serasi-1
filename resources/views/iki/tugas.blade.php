@@ -54,9 +54,9 @@
                                     <td> {{ $ckp->target_ckp_prov}} {{$ckp->satuan_ckp_prov}} </td>
                                     <td> {{ $ckp->user->name }} </td>
                                     <td>
-                                        <a href="{{ url('/iki/tugas_edit/' . $ckp->id_ckp_prov . '') }}"><i class="mdi mdi-account-arrow-right-outline mdi-24px"></i></a>
-                                        <a href="{{ url('/iki/edit/' . $ckp->id_iki_prov . '') }}"><i class="mdi mdi-pencil-outline mdi-24px"></i></a>
-                                        <!-- <a href="/iki/hapus/{{ $ckp->id_iki_prov }}" class="delete-confirm" role="button"><i class="mdi mdi-trash-can-outline mdi-24px"></i> -->
+                                        <a href="{{ url('/iki/tugas_edit/' . $ckp->id_ckp_prov . '') }}"><i class="mdi mdi-pencil-outline mdi-24px"></i></a>
+                                        {{-- <a href="{{ url('/iki/edit/' . $ckp->id_iki_prov . '') }}"><i class="mdi mdi-pencil-outline mdi-24px"></i></a> --}}
+                                        <a href="/iki/tugas_hapus/{{ $ckp->id_ckp_prov }}" class="delete-confirm" role="button"><i class="mdi mdi-trash-can-outline mdi-24px"></i>
                                     </td>
                                 </tr>
                                 @endforeach

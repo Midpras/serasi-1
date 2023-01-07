@@ -30,7 +30,12 @@ class Level1Controller extends Controller
     public function store(Request $request)
     {   
         $validated = $request->validate([
-            'nama_lvl1' => 'required|unique:lvl1'
+            'nama_lvl1' => ['required', 'unique:lvl1','min:6']
+        ],
+        [
+            'nama_lvl1.required' => 'Harap isikan form nama kegiatan',
+            'nama_lvl1.unique' => 'nama kegiatan tersebut sudah ada',
+            'nama_lvl1.min' => 'Nama kegiatan setidaknya minimal terdiri dari 6 karakter'
         ]);
         // DB::table('lvl1')->insert([
         //     'nama_lvl1' => $validated['nama_lvl1']

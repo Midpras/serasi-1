@@ -7,8 +7,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\IkuProv;
+use App\Models\IkiProv;
+use App\Models\Ikikab;
 use App\Models\Kegiatan;
 use App\Models\IkuKab;
+use App\Models\Tim;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class IkuController extends Controller
 {
     public function __construct()
@@ -23,7 +28,7 @@ class IkuController extends Controller
            
             $kode = auth()->user()->satker;
         
-            $iku_prov = IkuProv::with(['pk_prov'])->get();
+            $iku_prov = IkuProv::with(['pkprov'])->get();
       
             $iku_kab = IkuKab::with(['pk_kab'])->where('kode_satker',$kode)->get();
        
@@ -79,7 +84,7 @@ class IkuController extends Controller
         $kode = auth()->user()->satker;
         if ($kode == '5300') {
 
-            $iku = IkuProv::with('pk_prov')->find($id);
+            $iku = IkuProv::with('pkprov')->find($id);
             
             
         }
@@ -112,7 +117,7 @@ class IkuController extends Controller
                 'target_iku_prov' => 'required',
             ]);
     
-            $iku = IkuProv::with('pk_prov')->find($id);
+            $iku = IkuProv::with('pkprov')->find($id);
             $iku->id_pk_prov = $request->
 		    $iku->nama_iku_prov = $request->nama_iku_prov;
             $iku->satuan_iku_prov = $request->satuan_iku_prov;
@@ -150,7 +155,7 @@ class IkuController extends Controller
         $kode = auth()->user()->satker;
         if ($kode == '5300') {
 
-            $iku = IkuProv::with('pk_prov')->find($id);
+            $iku = IkuProv::with('pkprov')->find($id);
             
             
         }
@@ -160,9 +165,10 @@ class IkuController extends Controller
         }
 
 
-        $kegiatan = DB::table('kegiatan')->get();
-        $tim   = DB::table('tim')->get();
-        return view('iki.entri',compact('kegiatan','id_iku','iku','user'));
+        // $kegiatan = DB::table('kegiatan')->get();
+        $kegiatan = Kegiatan::with(['level1', 'level2', 'level3'])->get();
+        $tim = Tim::with('user')->get();
+        return view('iku.entri',compact('kegiatan','iku', 'tim'));
     }
 
 

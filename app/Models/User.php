@@ -17,14 +17,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $connection = 'mysql';
+    protected $table = 'users';
+    // protected $primaryKey = 'nip';
+
     protected $fillable = [
         'name',
+        'nip',
+        'niplama',
         'email',
+        'satker',
+        'role',
         'password',
+        'id_ttd'
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for serialization.Pweb
      *
      * @var array<int, string>
      */
@@ -42,8 +51,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function parent(){
+        return $this->belongsTo(User::class, 'id_ttd', 'id');
+    }
+
     public function ckpprov()
     {
         return $this->hasMany(Ckpprov::class, 'id_user');
+    }
+
+    public function tim(){
+        return $this->belongsTo(Tim::class, 'id_ttd', 'id_user');
     }
 }

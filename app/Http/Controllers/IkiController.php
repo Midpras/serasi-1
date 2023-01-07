@@ -10,7 +10,7 @@ use App\Models\Skpkab;
 use App\Models\Kegiatan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Ckpprov;
 
 class IkiController extends Controller
@@ -22,15 +22,36 @@ class IkiController extends Controller
 
     public function index()
     {
-        $iki_tugas = Ikiprov::with(['Pkprov', 'Ikuprov'])->where('id_user', Auth::id())->whereNull('nama_iki_prov')->get();
-        $iki = Ikiprov::with(['Pkprov', 'Ikuprov'])->where('id_user', Auth::id())->where('nama_iki_prov', '!=', 'NULL')->get();
+        // $iki_tugas = Ikiprov::with(['Pkprov', 'Ikuprov'])->where('id_user', Auth::id())->whereNull('nama_iki_prov')->get();
+
+        $id_iki = DB::table('ckp_prov')->select('id_iki_prov')->distinct()->get();
+
+        $iki_tugas = Ikiprov::where(function ($query) use ($id_iki) {
+            foreach ($id_iki as $id) {
+                $query->where('id_iki_prov', '!=', $id->id_iki_prov);
+            }
+        })
+            ->where('id_user', Auth::id())
+            ->get();
+
+        $iki = Ikiprov::where(function ($query) use ($id_iki) {
+            foreach ($id_iki as $id) {
+                $query->orWhere('id_iki_prov', '=', $id->id_iki_prov);
+            }
+        })
+            ->where('id_user', Auth::id())
+            ->get();
+
+        $iki_pegawai_prov = Ikiprov::where('id_user', Auth::id())->get();
+
+        // $iki = Ikiprov::with(['Pkprov', 'Ikuprov'])->where('id_user', Auth::id())->where('nama_iki_prov', '!=', 'NULL')->get();
 
         $iki_tugas_kab = Ikikab::with(['Pkkab', 'Ikukab'])->where('id_user', Auth::id())->whereNull('nama_iki_kab')->get();
         $iki_kab = Ikikab::with(['Pkkab', 'Ikukab'])->where('id_user', Auth::id())->where('nama_iki_kab', '!=', 'NULL')->get();
 
         $nama = DB::table('users')->where('id', Auth::id())->first();
 
-        return view('iki.index', compact('iki', 'iki_tugas', 'nama', 'iki_kab', 'iki_tugas_kab'));
+        return view('iki.index', compact('iki', 'iki_tugas', 'nama', 'iki_kab', 'iki_tugas_kab', 'iki_pegawai_prov'));
     }
 
     public function penugasan($id)
@@ -56,27 +77,33 @@ class IkiController extends Controller
     {
         $iki = Ikiprov::with(['Ikuprov'])->where('id_iki_prov', $id)->first();
 
+        $iki_skp = Skpprov::with(['Ikiprov'])->where('id_iki_prov', $id)->first();
+
         $nama = DB::table('users')->where('id', Auth::id())->first();
 
-        return view('iki.edit', compact('iki', 'nama'));
+        return view('iki.edit', compact('iki', 'nama', 'iki_skp'));
     }
 
     public function update(Request $request)
     {
         $request->validate([
-            'nama_iki_prov' => 'required',            
+            'nama_iki_prov' => 'required',
         ]);
 
         DB::table('iki_prov')->where('id_iki_prov', $request->id_iki_prov)->update([
             'nama_iki_prov' => $request->nama_iki_prov,
         ]);
 
-        Skpprov::create([
-            'nama_skp_prov' => $request->nama_skp_prov,
-            'jenis_skp_prov' => 'turunan',
-            'id_iki_prov' => $request->id_iki_prov,
-        ]);
+        $cekupdate = DB::table('skp_prov')->where('id_iki_prov', $request->id_iki_prov)->get();
+        // dd($cekupdate);
 
+        if ($cekupdate->count() == 0) {
+            Skpprov::create([
+                'nama_skp_prov' => $request->nama_skp_prov,
+                'jenis_skp_prov' => 'turunan',
+                'id_iki_prov' => $request->id_iki_prov,
+            ]);
+        }
         Alert::success('Selamat', 'Nama IKI berhasil tersimpan');
 
         return redirect('/iki')->with('success-create', 'Nama IKI berhasil disimpan!');
@@ -121,4 +148,59 @@ class IkiController extends Controller
 
         return redirect('/iki')->with('success-create', 'Nama IKI berhasil disimpan!');
     }
+
+    public function hapus_tugas($id)
+    {
+        DB::table('ckp_prov')->where('id_ckp_prov', $id)->delete();
+
+        Alert::success('Selamat', 'Penugasan berhasil dihapus!');
+        return redirect('/iki')->with('success-create', 'Penugasan berhasil dihapus!');
+    }
+
+    public function tugasiku(Request $request) {
+        $nama = DB::table('users')->where('id', Auth::id())->first();
+        if ($nama->satker == '5300') {
+
+            $messages = [
+                'required' => ':attribute wajib diisi'
+            ];
+
+            $this->validate($request,[
+                'satuan_iki_prov' => 'required',
+                'target_iki_prov' => 'required',
+                'perhitungan_prov' => 'required',
+                'user'         => 'required',
+                'nama_iki_prov'         => 'required',
+            ], $messages);
+
+            $data=array(
+                'id_iku_prov'=> $request->id_iku,
+                'perhitungan_prov' => $request->perhitungan_prov,
+                'satuan_iki_prov' => $request->satuan_iki_prov,
+                'target_iki_prov' => $request->target_iki_prov,
+                'id_user' => $request->user,
+                'nama_iki_prov' => $request->nama_iki_prov,
+            );
+            DB::table('iki_prov')->insert($data);
+    
+        }
+        else{
+            $this->validate($request, [
+                'nama_iku_kab' => 'required|string|max:155',
+                'satuan_iku_kab' => 'required',
+                'target_iku_kab' => 'required',
+            ]);
+    
+            Ikikab::create([
+                'id_pk_kab'=> $request->pk,
+                'nama_iku_kab' => $request->nama_iku_kab,
+                'satuan_iku_kab' => $request->satuan_iku_kab,
+                'target_iku_kab' => $request->target_iku_kab,
+                'kode_satker' => $nama->satker,
+            ]);
+        }
+        
+        return redirect('/iku')->with('success','Iki Telah Ditambahkan.');
+    }
+
 }

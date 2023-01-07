@@ -6,12 +6,12 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Entri Kegiatan Level 3</h4>
+                <h4 class="card-title">Entri Rincian Kegiatan</h4>
                 <div class="form-validation">
                     <form class="form-valide" action="{{ route('level3.store') }}" method="POST">
                         <div class="form-group">
                             @csrf
-                            <label>Nama Kegiatan Level 3</label>
+                            <label>Nama Rincian Kegiatan</label>
                             <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan" name="nama_lvl3" id="nama_lvl3" required>
                             @error('nama_lvl3')
                                 <div class="alert alert-danger">
@@ -28,7 +28,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Daftar Kegiatan Level 3</h4>
+                <h4 class="card-title">Daftar Rincian Kegiatan</h4>
                 @if(session('delete'))
                     <div class="alert alert-danger">
                         {{session('delete')}}

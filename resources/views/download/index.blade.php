@@ -33,16 +33,15 @@
                     <h4 class="card-title">Download CKP</h4>
                     <div class="col-lg-12">
                         
-                        <!-- /# card -->
                     </div>
-                    <form id="formupdate" autocomplete="off" method="post" action="/download" class="needs-validation d-inline" enctype="multipart/form-data" novalidate>
+                    <form id="formupdate" autocomplete="off" method="post" action="/downloadckp" class="needs-validation d-inline" enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label class="form-control-label" for="year">Tahun</label>
                                 <select class="form-control @error('year') is-invalid @enderror" data-toggle="select" name="year">
                                     @foreach($years as $year)
-                                    <option value="{{$year->id}}" {{ old('year', $currentyear->id) == $year->id ? 'selected' : '' }}>{{$year->name}}</option>
+                                    <option value="{{$year->name}}" {{ old('year', $currentyear->id) == $year->id ? 'selected' : '' }}>{{$year->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('year')

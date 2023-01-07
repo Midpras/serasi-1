@@ -14,7 +14,7 @@
                             @method('put')
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label>Nama Kegiatan Level 1</label>
+                                    <label>Nama Kegiatan</label>
                                     <select class="form-control" id="id_lvl1" name="id_lvl1"> 
                                         <option value="{{$kegiatan->lvl1->id_lvl1}}">{{$kegiatan->lvl1->nama_lvl1}} </option>
                                         @foreach($lvl1 as $keglvl1)
@@ -25,7 +25,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Nama Kegiatan Level 2</label>
+                                    <label>Nama Sub Kegiatan</label>
                                     <select class="form-control" id="id_lvl2" name="id_lvl2"> 
                                         <option value="{{$kegiatan->lvl2->id_lvl2}}">{{$kegiatan->lvl2->nama_lvl2}} </option>
                                         @foreach($lvl2 as $keglvl2)
@@ -36,7 +36,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Nama Kegiatan Level 3</label>
+                                    <label>Nama Rincian Kegiatan</label>
                                     <select class="form-control" id="id_lvl3" name="id_lvl3"> 
                                         <option value="{{$kegiatan->lvl3->id_lvl3}}">{{$kegiatan->lvl3->nama_lvl3}} </option>
                                         @foreach($lvl3 as $keglvl3)

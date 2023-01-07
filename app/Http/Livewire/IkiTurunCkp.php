@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class IkiTurunCkp extends Component
 {
-    public $id_kegiatan, $target_ckp, $satuan_ckp, $bulan, $tahun, $id_iki, $id_user, $penilai_ckp, $flag_ckp, $id_ckp;
+    public $id_kegiatan, $target_ckp, $satuan_ckp, $bulan, $tahun, $id_iki, $id_user, $penilai_ckp, $flag_ckp, $id_ckp, $id_iki_atasan;
     public $updateMode = False;
     public $inputs = [];
     public $i = 1;
@@ -106,6 +106,7 @@ class IkiTurunCkp extends Component
                 'target_iki_prov' => $this->target_ckp[$key],
                 'satuan_iki_prov' => $this->satuan_ckp[$key],
                 'id_user' => $this->id_user[$key],
+                'id_iki_atasan' => $this->id_iki,
             ]);
         }
 

@@ -29,13 +29,18 @@ class Level2Controller extends Controller
     public function store(Request $request)
     {   
         $validated = $request->validate([
-            'nama_lvl2' => 'required|unique:lvl2'
+            'nama_lvl2' => 'required|unique:lvl2|min:6'
+        ],
+        [
+            'nama_lvl2.required' => 'Harap Isikan Form Nama Sub Kegiatan',
+            'nama_lvl2.unique' => 'Nama Kegiatan tersebut sudah ada',
+            'nama_lvl2.min' => 'Nama kegiatan setidaknya minimal terdiri dari 6 karakter'
         ]);
         Level2::create([
             'nama_lvl2' => $validated['nama_lvl2']
         ]);
         
-        return redirect()->route('lvl2.index');
+        return redirect()->route('level2.index');
     }
 
     /**

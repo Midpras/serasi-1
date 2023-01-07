@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tim;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,10 +18,12 @@ class TimController extends Controller
     public function index()
     {
         $tim = Tim::all();
-        $satker = DB::table('satuan_kerja')->get();
+        $satker = DB::connection('mysql')->table('satuan_kerja')->get();
+        $users = User::all();
         return view('master.tim', [
             'tim' => $tim,
             'satker' => $satker,
+            'users' => $users
         ]);
     }
 
@@ -42,9 +45,10 @@ class TimController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'nama_tim' => 'required|unique:tim',
-            'kode_satker' => 'required'
+            'kode_satker' => 'required',
         ]);
         // DB::table('lvl1')->insert([
         //     'nama_lvl1' => $validated['nama_lvl1']
@@ -52,11 +56,18 @@ class TimController extends Controller
         Tim::create(
             [
             'nama_tim' => $validated['nama_tim'],
-            'kode_satker' => $validated['kode_satker']
+            'kode_satker' => $validated['kode_satker'],
+            'id_user' => $request['ketua_tim']
             ]
-        );     
+        );
+        $user = User::find($request['ketua_tim']);
+        if ($user->role != 'Ketua Tim') {
+            $user->role = 'Ketua Tim';
+            $user->save();
+        }
+
         
-        return redirect()->route('master.tim');
+        return redirect()->route('tim.index');
     }
 
     /**
@@ -80,9 +91,11 @@ class TimController extends Controller
     {
         $tim = Tim::find($id);
         $satker = DB::table('satuan_kerja')->get();
+        $users = User::all();
         return view('master.edittim',[
             'tim'=> $tim,
-            'satker'=>$satker
+            'satker'=>$satker,
+            'users' => $users
         ]);
     }
 
@@ -96,11 +109,16 @@ class TimController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'nama_tim' => 'required|unique:tim',
-            'kode_satker' => 'required'
+            'nama_tim' => 'required',
+            'kode_satker' => 'required',
+            'ketua_tim' => 'required'
         ]);
         $tim = Tim::find($id);
-        $tim->update($validated);
+        $tim->update(
+        ['nama_tim' => $validated['nama_tim'],
+        'kode_satker' => $validated['kode_satker'],
+        'id_user' => $validated['ketua_tim']
+        ]);
         return redirect()->route('tim.index')->with('success', 'Berhasil Update Data');
     }
 
@@ -113,7 +131,20 @@ class TimController extends Controller
     public function destroy($id)
     {
         $tim = Tim::find($id);
+        $id_ketua = $tim->id_user;
         $tim->delete();
+        $ketuatim = Tim::where('id_user', $id_ketua)->first();
+        // dd($ketuatim->id_user);
+        if ($ketuatim === null) {
+            $user = User::find($id_ketua);
+            $user->role = 'User';
+            $user->save();
+        }
+        else {
+            $user = User::find($id_ketua);
+            $user->role = 'Ketua Tim';
+            $user->save();
+        }
 
         return redirect()->route('tim.index');
 
