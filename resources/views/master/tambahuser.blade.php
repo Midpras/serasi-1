@@ -127,6 +127,7 @@
     var name = $(this).val();
     var url = '{{ route("getNIP", ":name") }}';
     url = url.replace(':name', name);
+    console.log(url);
 
     $.ajax({
         url: url,
@@ -134,7 +135,7 @@
         dataType: 'json',
         success: function(response){
             if(response != null){
-                $('#nip').val(response.nip);
+                $('#nip').val(response.nipbaru);
                 $('#email').val(response.email);
             }
         }
